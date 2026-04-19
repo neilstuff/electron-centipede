@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lode Runner Web Game</title>
+	<!--
+	* =================================================================================== 
+	* Lode Runner - APPLE II & C64 version
+	*
+	* This program is a HTML5 remake game.
+	*
+	* The program code base on CreateJS JavaScript libraries !
+	* http://www.createjs.com/
+	*
+	* The AI algorithm reference book:
+	* http://www.kingstone.com.tw/book/book_page.asp?kmcode=2014710650538
+
+	* 
+	* Source Code: https://github.com/SimonHung/LodeRunner_TotalRecall
+	* Web page: http://LodeRunnerWebGame.com
+	*
+	* by Simon Hung 06/20/2014, 11/23/2014, 06/29/2015, 09/28/2016, 03/26/2025
+	* =================================================================================== 
+	-->
+	<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="chrome=1, IE=edge">
+	
+	<link href="lodeRunner.ico"  rel="shortcut icon" >
+	
+	<style>#canvas { position:absolute; left:0; top:0; }</style>
+
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.wData.js"></script>
+
+	<script type="text/javascript" src="node_modules/preloadjs/lib/preloadjs.min.js"></script>
+	<script type="text/javascript" src="node_modules/soundjs/lib/soundjs.min.js"></script>
+	<script type="text/javascript" src="node_modules/tweenjs/lib/tweenjs.min.js"></script>
+	<script type="text/javascript" src="node_modules/easeljs/lib/easeljs.min.js"></script>
+	
+	<script type="text/javascript" src="assets/javascripts/flag32Id.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.gameVerName.js"></script>
+
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.v.classic.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.v.professional.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.v.revenge.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.v.fanBookMod.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.v.championship.js"></script>
+	
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.storage.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.def.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.key.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.misc.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.hiscore.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.info.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.menu.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.iconClass.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.runner.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.guard.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.demo.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.demoData1.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.edit.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.preload.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.colorTheme.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.colorSelector.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.gamepad.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.main.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.win.js"></script>
+	<script type="text/javascript" src="assets/javascripts/lodeRunner.share.js"></script>
+</head>
+<body onload="init();">	
+<div class="canvas">
+	<canvas id="canvas" width="960" height="400"></canvas>
+</div>
+</body>	
+</html>

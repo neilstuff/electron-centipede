@@ -1,0 +1,53 @@
+{
+    "name": "load-runner",
+    "version": "1.0.0",
+    "description": "Load-Runner",
+    "main": "main.js",
+    "scripts": {
+        "pack": "electron-builder --dir",
+        "dist": "electron-builder --publish never",
+        "start": "electron ."
+    },
+    "build": {
+        "win": {
+            "target": [
+                {
+                    "target": "nsis",
+                    "arch": [
+                        "x64",
+                        "ia32"
+                    ]
+                }
+            ]
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/thesourorange/neilstuff/load-runner.git"
+    },
+    "keywords": [
+        "Electron",
+        "utility"
+    ],
+    "author": "GitHub",
+    "license": "CC0-1.0",
+    "dependencies": {
+        "mime": "^3.0.0",
+        "chai": "^3.5.0",
+        "css-loader": "^0.26.0",
+        "eslint": "^4.8.0",
+        "mocha": "^3.1.2",
+        "mocha-loader": "^1.0.0",
+        "node-libs-browser": "^1.0.0",
+        "style-loader": "^0.13.1",
+    },
+    "devDependencies": {
+        "electron": "^41.0.0",
+        "electron-builder": "^26.8.1",
+        "node": "^22.22.1"
+    },
+    "bugs": {
+        "url": "https://github.com/thesourorange/neilstuff/load-runner"
+    },
+    "homepage": "https://github.com/thesourorange/neilstuff/load-runner#readme"
+}
