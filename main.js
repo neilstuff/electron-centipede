@@ -20,13 +20,13 @@ var mainWindow = null;
 function createWindow() {
 
     mainWindow = new BrowserWindow({
-        width: (config.mode == "debug") ? 1800 : 700,
-        height: 500,
+        width: (config.mode == "debug") ? 1600 : 800,
+        height: 1000,
         resizable: false,
         frame: true,
         maximizable: true,
-        minHeight: 500,
-        minWidth: (config.mode == "debug") ? 600 : 600,
+        minHeight: 1000,
+        minWidth: (config.mode == "debug") ? 1600 : 800,
         fullscreenable: true,
         autoHideMenuBar: true,
 
@@ -44,7 +44,7 @@ function createWindow() {
     }
 
     mainWindow.setMenu(null);
-    mainWindow.setTitle('Load Runner');
+    mainWindow.setTitle('Centipede');
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),
         protocol: 'file',

@@ -1,10 +1,11 @@
 {
-    "name": "load-runner",
+    "name": "centipede",
     "version": "1.0.0",
-    "description": "Load-Runner",
+    "description": "Centipede game",
     "main": "main.js",
     "scripts": {
         "pack": "electron-builder --dir",
+        "compile": "webpack --config webpack.config.js",
         "dist": "electron-builder --publish never",
         "start": "electron ."
     },
@@ -23,7 +24,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/thesourorange/neilstuff/load-runner.git"
+        "url": "git+https://github.com/thesourorange/neilstuff/electron-centipede.git"
     },
     "keywords": [
         "Electron",
@@ -39,12 +40,18 @@
         "mocha": "^3.1.2",
         "mocha-loader": "^1.0.0",
         "node-libs-browser": "^1.0.0",
-        "style-loader": "^0.13.1",
+        "style-loader": "^0.13.1"
     },
     "devDependencies": {
+        "babel": "^6.5.2",
+        "babel-core": "^6.18.2",
+        "babel-eslint": "^8.0.1",
+        "babel-loader": "^6.2.7",
         "electron": "^41.0.0",
         "electron-builder": "^26.8.1",
-        "node": "^22.22.1"
+        "node": "^22.22.1",
+        "webpack": "^1.13.3",
+        "webpack-dev-server": "^1.16.2"
     },
     "bugs": {
         "url": "https://github.com/thesourorange/neilstuff/load-runner"

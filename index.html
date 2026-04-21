@@ -1,73 +1,158 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Lode Runner Web Game</title>
-	<!--
-	* =================================================================================== 
-	* Lode Runner - APPLE II & C64 version
-	*
-	* This program is a HTML5 remake game.
-	*
-	* The program code base on CreateJS JavaScript libraries !
-	* http://www.createjs.com/
-	*
-	* The AI algorithm reference book:
-	* http://www.kingstone.com.tw/book/book_page.asp?kmcode=2014710650538
 
-	* 
-	* Source Code: https://github.com/SimonHung/LodeRunner_TotalRecall
-	* Web page: http://LodeRunnerWebGame.com
-	*
-	* by Simon Hung 06/20/2014, 11/23/2014, 06/29/2015, 09/28/2016, 03/26/2025
-	* =================================================================================== 
-	-->
-	<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="chrome=1, IE=edge">
-	
-	<link href="lodeRunner.ico"  rel="shortcut icon" >
-	
-	<style>#canvas { position:absolute; left:0; top:0; }</style>
+	<head>
+	  <title>Game Time</title>
+	  <link href="assets/styles/index.css" type="text/css" rel="stylesheet">
+	</head>
 
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.wData.js"></script>
+	<body>
 
-	<script type="text/javascript" src="node_modules/preloadjs/lib/preloadjs.min.js"></script>
-	<script type="text/javascript" src="node_modules/soundjs/lib/soundjs.min.js"></script>
-	<script type="text/javascript" src="node_modules/tweenjs/lib/tweenjs.min.js"></script>
-	<script type="text/javascript" src="node_modules/easeljs/lib/easeljs.min.js"></script>
-	
-	<script type="text/javascript" src="assets/javascripts/flag32Id.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.gameVerName.js"></script>
 
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.v.classic.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.v.professional.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.v.revenge.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.v.fanBookMod.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.v.championship.js"></script>
-	
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.storage.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.def.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.key.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.misc.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.hiscore.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.info.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.menu.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.iconClass.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.runner.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.guard.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.demo.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.demoData1.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.edit.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.preload.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.colorTheme.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.colorSelector.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.gamepad.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.main.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.win.js"></script>
-	<script type="text/javascript" src="assets/javascripts/lodeRunner.share.js"></script>
-</head>
-<body onload="init();">	
-<div class="canvas">
-	<canvas id="canvas" width="960" height="400"></canvas>
-</div>
-</body>	
+		<main>
+			<header class="centipede-header">
+				<img src="assets/images/centipede-header.png">
+			</header>
+
+			<article class="screen-container">
+				<div class="screen-bars">
+					<img src="assets/images/bar-left.svg">
+				</div>
+				<div class="game-container">
+
+					<div class="top-line-container">
+						<div class="lives">
+							<div class="life-holder life-holder-1"><img src="assets/images/extra-life.svg">
+							</div>
+							<div class="life-holder life-holder-2"><img src="assets/images/extra-life.svg">
+							</div>
+							<div class="life-holder life-holder-3"><img src="assets/images/extra-life.svg">
+							</div>
+						</div>
+
+						<p>TURING&nbsp;&nbsp;PLAYER<span class="points-span">0</span></p>
+						<p id="level-para">L<span class="level-span">1</span></p>
+					</div>
+
+				  <canvas
+					  width="720"
+					  height="720"
+					  id="game">
+					</canvas>
+				</div>
+				<div class="screen-bars">
+					<img src="assets/images/bar-right.svg">
+				</div>
+			</article>
+
+			<article class="game-controls">
+				<img src="assets/images/controls.svg" class="control-panel">
+
+				<div class="fire-button">
+					<img src="assets/images/button-up.svg">
+					<!-- <img src="assets/button-down.svg"> -->
+				</div>
+
+				<div class="left-button direction-buttons">
+					<img src="assets/images/button-up.svg">
+					<!-- <img src="assets/button-down.svg"> -->
+				</div>
+
+				<div class="up-button direction-buttons">
+					<img src="assets/images/button-up.svg">
+					<!-- <img src="assets/button-down.svg"> -->
+				</div>
+
+				<div class="right-button direction-buttons">
+					<img src="assets/images/button-up.svg">
+					<!-- <img src="assets/button-down.svg"> -->
+				</div>
+
+				<div class="down-button direction-buttons">
+					<img src="assets/images/button-up.svg">
+					<!-- <img src="assets/button-down.svg"> -->
+				</div>
+				<div class="play-button">
+					<img src="assets/images/play-up.svg">
+				</div>
+				<div class="pause-button">
+					<img src="assets/images/pause-up.svg">
+					<!-- <img src="assets/button-down.svg"> -->
+				</div>
+
+				<div class="start-screen">
+					<div class="shroom-block">
+						<img src="assets/images/menu-shroom.svg">
+						<img src="assets/images/menu-shroom.svg">
+						<img src="assets/images/menu-shroom.svg">
+					</div>
+					<p>PRESS&nbsp;&nbsp;&nbsp;P</p>
+					<p>to&nbsp;&nbsp;&nbsp;PLAY</p>
+					<img src="assets/images/menu-player.svg">
+				</div>
+
+				<div class="pause-screen">
+					<img src="assets/images/menu-spider.svg">
+					<p>PRESS&nbsp;&nbsp;&nbsp;P</p>
+					<p>to</p>
+					<p>CONTINUE</p>
+					<div class="shroom-block">
+						<img src="assets/images/menu-shroom-2.svg">
+						<img src="assets/images/menu-shroom-2.svg">
+						<img src="assets/images/menu-shroom-2.svg">
+					</div>
+				</div>
+
+				<div class="next-level menu-display">
+					<img src="assets/images/menu-spider.svg">
+					<p>PRESS&nbsp;&nbsp;&nbsp;P</p>
+					<p>for</p>
+					<p>NEXT&nbsp;&nbsp;&nbsp;LEVEL</p>
+					<div class="shroom-block">
+						<img src="assets/images/menu-shroom-2.svg">
+						<img src="assets/images/menu-shroom-2.svg">
+						<img src="assets/images/menu-shroom-2.svg">
+					</div>
+				</div>
+
+				<div class="you-died menu-display">
+					<img src="assets/images/menu-spider.svg">
+					<p>YOU&nbsp;&nbsp;&nbsp;DIED!</p>
+					<p>PRESS&nbsp;&nbsp;&nbsp;P&nbsp;&nbsp;&nbsp;</p>
+					<p>for</p>
+					<p>NEXT&nbsp;&nbsp;&nbsp;LIFE</p>
+					<div class="shroom-block">
+						<img src="assets/images/menu-shroom-2.svg">
+						<img src="assets/images/menu-shroom-2.svg">
+						<img src="assets/images/menu-shroom-2.svg">
+					</div>
+				</div>
+				<div class="game-over menu-display">
+					<img src="assets/images/menu-spider.svg">
+					<p>GAME&nbsp;&nbsp;&nbsp;OVER!</p>
+					<p>PRESS&nbsp;&nbsp;&nbsp;P&nbsp;&nbsp;&nbsp;TO</p>
+					<p>PLAY&nbsp;&nbsp;&nbsp;AGAIN</p>
+					<div class="shroom-block">
+						<img src="assets/images/menu-shroom-2.svg">
+						<img src="assets/images/menu-shroom-2.svg">
+						<img src="assets/images/menu-shroom-2.svg">
+					</div>
+				</div>
+
+			</article>
+
+		</main>
+
+		<div style="display:none;">
+		  <img src="assets/images/mushroom-red-sprite.png" id="mushroom">
+		  <img src="assets/images/Player-sprite.png" id="player">
+		  <img src="assets/images/centipede-sprite.png" id="centipede">
+			<img src="assets/images/spider-sprite.png" id="spider">
+		  <img src="assets/images/flea-sprite.png" id="flea">
+		</div>
+
+	  <script src="main.bundle.js"></script>
+
+	</body>
+
 </html>
