@@ -125,7 +125,7 @@ class Gun {
     if (keyCode === 32) {
       this.shooting = true;
       document.querySelector('.fire-button img').removeAttribute('src');
-      document.querySelector('.fire-button img').setAttribute('src', 'assets/button-down.svg');
+      document.querySelector('.fire-button img').setAttribute('src', 'assets/images/button-down.svg');
     }
   }
 
@@ -133,7 +133,7 @@ class Gun {
     if (keyCode === 32) {
       this.shooting = false;
       document.querySelector('.fire-button img').removeAttribute('src');
-      document.querySelector('.fire-button img').setAttribute('src', 'assets/button-up.svg');
+      document.querySelector('.fire-button img').setAttribute('src', 'assets/images/button-up.svg');
     }
   }
 

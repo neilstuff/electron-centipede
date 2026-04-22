@@ -33,24 +33,24 @@ class Game {
 
   playButtonAni() {
     document.querySelector('.play-button img').removeAttribute('src');
-    document.querySelector('.play-button img').setAttribute('src', 'assets/play-down.svg')
+    document.querySelector('.play-button img').setAttribute('src', 'assets/images/play-down.svg')
     setTimeout(this.playUp, 150);
   }
 
   playUp() {
     document.querySelector('.play-button img').removeAttribute('src');
-    document.querySelector('.play-button img').setAttribute('src', 'assets/play-up.svg')
+    document.querySelector('.play-button img').setAttribute('src', 'assets/images/play-up.svg')
 
   }
 
   pauseUp() {
     document.querySelector('.pause-button img').removeAttribute('src');
-    document.querySelector('.pause-button img').setAttribute('src', 'assets/pause-up.svg')
+    document.querySelector('.pause-button img').setAttribute('src', 'assets/images/pause-up.svg')
   }
 
   pauseDown() {
     document.querySelector('.pause-button img').removeAttribute('src');
-    document.querySelector('.pause-button img').setAttribute('src', 'assets/pause-down.svg')
+    document.querySelector('.pause-button img').setAttribute('src', 'assets/images/pause-down.svg')
   }
 
   gameLoop() {

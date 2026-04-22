@@ -360,24 +360,24 @@
 
 	  playButtonAni() {
 	    document.querySelector('.play-button img').removeAttribute('src');
-	    document.querySelector('.play-button img').setAttribute('src', 'assets/play-down.svg')
+	    document.querySelector('.play-button img').setAttribute('src', 'assets/images/play-down.svg')
 	    setTimeout(this.playUp, 150);
 	  }
 
 	  playUp() {
 	    document.querySelector('.play-button img').removeAttribute('src');
-	    document.querySelector('.play-button img').setAttribute('src', 'assets/play-up.svg')
+	    document.querySelector('.play-button img').setAttribute('src', 'assets/images/play-up.svg')
 
 	  }
 
 	  pauseUp() {
 	    document.querySelector('.pause-button img').removeAttribute('src');
-	    document.querySelector('.pause-button img').setAttribute('src', 'assets/pause-up.svg')
+	    document.querySelector('.pause-button img').setAttribute('src', 'assets/images/pause-up.svg')
 	  }
 
 	  pauseDown() {
 	    document.querySelector('.pause-button img').removeAttribute('src');
-	    document.querySelector('.pause-button img').setAttribute('src', 'assets/pause-down.svg')
+	    document.querySelector('.pause-button img').setAttribute('src', 'assets/images/pause-down.svg')
 	  }
 
 	  gameLoop() {
@@ -601,28 +601,28 @@
 	      this.playerSpeed = 4;
 	      this.xMovement = -1;
 	      document.querySelector('.left-button img').removeAttribute('src');
-	      document.querySelector('.left-button img').setAttribute('src', 'assets/button-down.svg');
+	      document.querySelector('.left-button img').setAttribute('src', 'assets/images/button-down.svg');
 	      break;
 	    case 39:
 	      this.xMovement = 1;
 	      this.playerSpeed = 4;
 
 	      document.querySelector('.right-button img').removeAttribute('src');
-	      document.querySelector('.right-button img').setAttribute('src', 'assets/button-down.svg');
+	      document.querySelector('.right-button img').setAttribute('src', 'assets/images/button-down.svg');
 	      break;
 	    case 38:
 	      this.yMovement = -1;
 	      this.playerSpeed = 4;
 
 	      document.querySelector('.up-button img').removeAttribute('src');
-	      document.querySelector('.up-button img').setAttribute('src', 'assets/button-down.svg');
+	      document.querySelector('.up-button img').setAttribute('src', 'assets/images/button-down.svg');
 	      break;
 	    case 40:
 	      this.yMovement = 1;
 	      this.playerSpeed = 4;
 
 	      document.querySelector('.down-button img').removeAttribute('src');
-	      document.querySelector('.down-button img').setAttribute('src', 'assets/button-down.svg');
+	      document.querySelector('.down-button img').setAttribute('src', 'assets/images/button-down.svg');
 	      break;
 	    }
 	  }
@@ -634,28 +634,28 @@
 	        this.xMovement = 0;
 	      }
 	      document.querySelector('.left-button img').removeAttribute('src');
-	      document.querySelector('.left-button img').setAttribute('src', 'assets/button-up.svg');
+	      document.querySelector('.left-button img').setAttribute('src', 'assets/images/button-up.svg');
 	      break;
 	    case 39:
 	      if (this.xMovement === 1) {
 	        this.xMovement = 0;
 	      }
 	      document.querySelector('.right-button img').removeAttribute('src');
-	      document.querySelector('.right-button img').setAttribute('src', 'assets/button-up.svg');
+	      document.querySelector('.right-button img').setAttribute('src', 'assets/images/button-up.svg');
 	      break;
 	    case 38:
 	      if (this.yMovement === -1) {
 	        this.yMovement = 0;
 	      }
 	      document.querySelector('.up-button img').removeAttribute('src');
-	      document.querySelector('.up-button img').setAttribute('src', 'assets/button-up.svg');
+	      document.querySelector('.up-button img').setAttribute('src', 'assets/images/button-up.svg');
 	      break;
 	    case 40:
 	      if (this.yMovement === 1) {
 	        this.yMovement = 0;
 	      }
 	      document.querySelector('.down-button img').removeAttribute('src');
-	      document.querySelector('.down-button img').setAttribute('src', 'assets/button-up.svg');
+	      document.querySelector('.down-button img').setAttribute('src', 'assets/images/button-up.svg');
 	      break;
 	    }
 	  }
@@ -854,7 +854,7 @@
 	    if (keyCode === 32) {
 	      this.shooting = true;
 	      document.querySelector('.fire-button img').removeAttribute('src');
-	      document.querySelector('.fire-button img').setAttribute('src', 'assets/button-down.svg');
+	      document.querySelector('.fire-button img').setAttribute('src', 'assets/images/button-down.svg');
 	    }
 	  }
 
@@ -862,7 +862,7 @@
 	    if (keyCode === 32) {
 	      this.shooting = false;
 	      document.querySelector('.fire-button img').removeAttribute('src');
-	      document.querySelector('.fire-button img').setAttribute('src', 'assets/button-up.svg');
+	      document.querySelector('.fire-button img').setAttribute('src', 'assets/images/button-up.svg');
 	    }
 	  }
 
