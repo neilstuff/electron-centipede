@@ -24,9 +24,9 @@ main {
 	justify-content: center;
 	margin: auto;
 	width: 980px;
-	scale: 0.6 0.6;
-	margin-top: -375px;
-	margin-left: -50px;
+	transform: scale(0.6);
+  	transform-origin: top left; /* Element grows from the top-left corner */		
+	position: absolute;
 	overflow: hidden;
 }
 
@@ -202,8 +202,3 @@ main {
 .menu-display {
 	display: none;
 }
-
-
-
-
-

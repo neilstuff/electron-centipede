@@ -330,9 +330,10 @@
 	var Spider = __webpack_require__(8);
 	var CentipedeWhole = __webpack_require__(2);
 	var Flea = __webpack_require__(10);
+	var Sound = __webpack_require__(11);
 
 	class Game {
-	  constructor (context, canvas){
+	  constructor(context, canvas) {
 	    this.level = 0;
 	    this.difficultyLevel = 0;
 	    this.paused = 'start';
@@ -345,17 +346,19 @@
 	    this.arrayOfFleas = [];
 	    this.centipede = new CentipedeWhole(this.level);
 	    this.spiderScore = null;
+
 	  }
 
 	  initializeGame() {
 	    this.centipede.createCentipede();
 
-	    for (var i = 0; i < 45; i ++) {
+	    for (var i = 0; i < 45; i++) {
 	      var randX = Math.floor(Math.random() * 30) * 24;
 	      var randY = Math.floor(Math.random() * 27 + 1) * 24;
 
-	      this.arrayOfMushrooms.push(new Mushrooms(randX,randY,0));
+	      this.arrayOfMushrooms.push(new Mushrooms(randX, randY, 0));
 	    }
+
 	  }
 
 	  playButtonAni() {
@@ -381,26 +384,26 @@
 	  }
 
 	  gameLoop() {
-	    if (this.paused === 'start'){
+	    if (this.paused === 'start') {
 	      document.querySelector('.pause-screen').classList.add('menu-display');
 	      requestAnimationFrame(this.gameLoop.bind(this));
-	    } else if (this.paused === true){
+	    } else if (this.paused === true) {
 	      document.querySelector('.pause-screen').classList.remove('menu-display');
 	      this.pauseDown();
 	      requestAnimationFrame(this.gameLoop.bind(this));
-	    } else if (this.paused === 'next-level'){
+	    } else if (this.paused === 'next-level') {
 	      document.querySelector('.next-level').classList.remove('menu-display');
 	      requestAnimationFrame(this.gameLoop.bind(this));
-	    } else if (this.paused === 'you-died'){
+	    } else if (this.paused === 'you-died') {
 	      document.querySelector('.you-died').classList.remove('menu-display');
 	      requestAnimationFrame(this.gameLoop.bind(this));
-	    } else if (this.paused === 'game-over'){
+	    } else if (this.paused === 'game-over') {
 	      document.querySelector('.game-over').classList.remove('menu-display');
 	      requestAnimationFrame(this.gameLoop.bind(this));
 	    } else {
 
 	      this.pauseUp();
-	      this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
+	      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
 	      document.querySelector('.start-screen').classList.add('menu-display');
 	      document.querySelector('.pause-screen').classList.add('menu-display');
@@ -415,18 +418,18 @@
 	      this.playerInitialize.update(this.context, this.arrayOfMushrooms);
 	      this.playerInitialize.gun.update(this.context, this.level);
 	      this.playerInitialize.gun.collide(this.arrayOfMushrooms);
-	      this.playerInitialize.gun.wormCollide(this.centipede.segmentsArray,this.arrayOfMushrooms,this.level);
-	      this.playerInitialize.gun.fleaCollide(this.arrayOfFleas);  
-	      this.playerInitialize.draw(this.context,this.level);
+	      this.playerInitialize.gun.wormCollide(this.centipede.segmentsArray, this.arrayOfMushrooms, this.level);
+	      this.playerInitialize.gun.fleaCollide(this.arrayOfFleas);
+	      this.playerInitialize.draw(this.context, this.level);
 	      this.playerInitialize.wormCollision(this.centipede, this);
 	      this.playerInitialize.fleaCollision(this.arrayOfFleas, this);
 	      this.playerInitialize.gun.move();
 
-	      this.centipede.draw(this.context,this.arrayOfMushrooms);
+	      this.centipede.draw(this.context, this.arrayOfMushrooms);
 	      this.centipede.move(this.arrayOfMushrooms);
 	      this.centipede.checkCentipedeHealth();
 
-	      if (this.arrayOfSpiders.length !== 0){
+	      if (this.arrayOfSpiders.length !== 0) {
 	        this.playerInitialize.spiderCollision(this.arrayOfSpiders, this);
 	        this.playerInitialize.gun.spiderCollide(this.arrayOfSpiders, this);
 	        this.frameCounter = 0;
@@ -436,20 +439,20 @@
 	        this.arrayOfSpiders[0].draw(this.context);
 	        this.arrayOfSpiders[0].move(this.difficultyLevel);
 	        this.arrayOfSpiders[0].pickUpShrooms(this.arrayOfMushrooms);
-	        if (this.arrayOfSpiders[1]){
+	        if (this.arrayOfSpiders[1]) {
 	          this.arrayOfSpiders[1].draw(this.context);
 	        }
-	        if (this.arrayOfSpiders[0].x > 744 || this.arrayOfSpiders[0].x < -48){
+	        if (this.arrayOfSpiders[0].x > 744 || this.arrayOfSpiders[0].x < -48) {
 	          this.frameCounter = 0;
-	          this.arrayOfSpiders.splice(0,1);
+	          this.arrayOfSpiders.splice(0, 1);
 	        }
 	      }
 
-	      if (this.spiderScore){
+	      if (this.spiderScore) {
 	        this.spiderScore.draw(this.context);
 	      }
 
-	      if (this.frameCounter > 250){
+	      if (this.frameCounter > 250) {
 	        this.generateSpider();
 	      }
 
@@ -457,7 +460,7 @@
 	        currentSeg.forEach((indivSeg) => {
 	          this.centipede.segmentsArray.forEach((currentSeg2, currentSegIndex2) => {
 	            currentSeg2.forEach((indivSeg2, indivIndex2) => {
-	              if (indivSeg.x === indivSeg2.x && indivSeg.y === indivSeg2.y && indivSeg.animationState && indivSeg2.animationState && indivSeg.tempAnimationState === indivSeg2.tempAnimationState && currentSegIndex !== currentSegIndex2){
+	              if (indivSeg.x === indivSeg2.x && indivSeg.y === indivSeg2.y && indivSeg.animationState && indivSeg2.animationState && indivSeg.tempAnimationState === indivSeg2.tempAnimationState && currentSegIndex !== currentSegIndex2) {
 	                currentSeg2.splice(indivIndex2);
 	              }
 	            });
@@ -472,19 +475,19 @@
 	      });
 
 
-	      if (this.centipede.segmentsArray.length === 0){
+	      if (this.centipede.segmentsArray.length === 0) {
 	        this.levelUp();
-	      }					
+	      }
 
 	      if (this.difficultyLevel >= 0 && (Math.floor(Math.random() * Math.max((1600 - this.difficultyLevel * 200), 700))) === 0) {
 	        this.arrayOfFleas.push(new Flea(this.level));
 	      }
 
-	      this.arrayOfFleas.forEach((flea,fleaIndex) => {
+	      this.arrayOfFleas.forEach((flea, fleaIndex) => {
 	        flea.draw(this.context, this.level);
 	        flea.update(this.arrayOfMushrooms, this.difficultyLevel);
-	        if (flea.y > 720){
-	          this.arrayOfFleas.splice(fleaIndex,1);
+	        if (flea.y > 720) {
+	          this.arrayOfFleas.splice(fleaIndex, 1);
 	        }
 	      });
 
@@ -493,16 +496,16 @@
 	    }
 	  }
 
-	  generateSpider () {
+	  generateSpider() {
 	    if (this.arrayOfSpiders.length === 0) {
 	      this.arrayOfSpiders[0] = new Spider(this.level);
 	      console.log(this.arrayOfSpiders[0]);
 	    }
 	  }
 
-	  levelUp () {
+	  levelUp() {
 	    this.playerInitialize.gun.increaseScore(500);
-	    if (this.level === 5){
+	    if (this.level === 5) {
 	      this.level = 0;
 	      this.difficultyLevel++;
 	      document.querySelector('.level-span').innerText = this.difficultyLevel + 1;
@@ -513,13 +516,13 @@
 	      document.querySelector('.level-span').innerText = this.difficultyLevel + 1;
 	      this.playerInitialize.gun.level++;
 	    }
-			
+
 	    this.centipede = new CentipedeWhole(this.level);
 	    this.centipede.createCentipede();
 	    this.frameCounter = 0;
 	    this.arrayOfSpiders = [];
 
-	    this.arrayOfMushrooms.forEach( mushroom => {
+	    this.arrayOfMushrooms.forEach(mushroom => {
 	      mushroom.level = this.level;
 	    });
 	  }
@@ -1054,6 +1057,35 @@
 
 
 	module.exports = Flea;
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+	class Sound {
+	  
+	    constructor () {
+	    
+	        this.sounds = {};
+	        this.sounds['newBeat'] = new Audio('assets/sounds/newBeat.wav');
+	  
+	    }
+
+	    play(sound) {
+
+	        this.sounds[sound].loop = true;
+	        this.sounds[sound].play();
+
+	    }
+
+	    pause(sound) {
+
+	        this.sounds[sound].loop = false;
+	        this.sounds[sound].pause();
+
+	    }
+
+	}
 
 /***/ })
 /******/ ]);
