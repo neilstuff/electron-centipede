@@ -329,8 +329,8 @@
 	var Player = __webpack_require__(5);
 	var Spider = __webpack_require__(8);
 	var CentipedeWhole = __webpack_require__(2);
-	var Flea = __webpack_require__(10);
-	var Sound = __webpack_require__(11);
+	var Flea = __webpack_require__(11);
+	var Sound = __webpack_require__(10);
 
 	class Game {
 	  constructor(context, canvas) {
@@ -722,8 +722,6 @@
 
 	}
 
-
-
 	module.exports = Player;
 
 /***/ }),
@@ -735,28 +733,29 @@
 	var Mushrooms = __webpack_require__(1);
 	var Spider = __webpack_require__(8);
 	var Fivehundred = __webpack_require__(9);
-
+	var Sound = __webpack_require__(10);
 
 	class Gun {
-	  constructor (player) {
+	  constructor(player) {
 	    this.player = player;
 	    this.arrayOfBullets = [];
 	    this.shooting = false;
 	    this.blockFrames = 0;
 	    this.level = 0;
 	    this.score = 0;
+	    this.sound = new Sound();
 	  }
 
 	  move() {
-	    this.arrayOfBullets.forEach ((bullet) => {
-	      bullet.y -= 24  ;
+	    this.arrayOfBullets.forEach((bullet) => {
+	      bullet.y -= 24;
 	    });
 	  }
 
 	  draw(context) {
-	    this.arrayOfBullets.forEach ((bullet,index) => {
+	    this.arrayOfBullets.forEach((bullet, index) => {
 	      if (bullet.y < 0) {
-	        this.arrayOfBullets.splice(index,1);
+	        this.arrayOfBullets.splice(index, 1);
 	      }
 	      bullet.draw(context);
 	    });
@@ -764,13 +763,13 @@
 
 	  collide(arrayOfMushrooms) {
 	    this.arrayOfBullets.forEach((bullet, bulletIndex) => {
-	      arrayOfMushrooms.forEach((mushroom,mushroomIndex) => {
-	        if (bullet.x >= mushroom.x && bullet.x <= mushroom.x+24 && bullet.y >= mushroom.y && bullet.y <= mushroom.y+30) {
-	          this.arrayOfBullets.splice(bulletIndex,1);
+	      arrayOfMushrooms.forEach((mushroom, mushroomIndex) => {
+	        if (bullet.x >= mushroom.x && bullet.x <= mushroom.x + 24 && bullet.y >= mushroom.y && bullet.y <= mushroom.y + 30) {
+	          this.arrayOfBullets.splice(bulletIndex, 1);
 	          mushroom.health--;
 	          this.increaseScore(1);
 	          if (mushroom.health === 0) {
-	            arrayOfMushrooms.splice(mushroomIndex,1);
+	            arrayOfMushrooms.splice(mushroomIndex, 1);
 	            this.increaseScore(4);
 	          }
 	        }
@@ -781,13 +780,13 @@
 	  fleaCollide(arrayOfFleas) {
 	    this.arrayOfBullets.forEach((bullet, bulletIndex) => {
 	      arrayOfFleas.forEach((flea, fleaIndex) => {
-	        if (bullet.x >= flea.x && bullet.x <= flea.x+27 && bullet.y >= flea.y & bullet.y <= flea.y+30) {
+	        if (bullet.x >= flea.x && bullet.x <= flea.x + 27 && bullet.y >= flea.y & bullet.y <= flea.y + 30) {
 	          this.arrayOfBullets.splice(bulletIndex, 1);
 	          flea.health--;
 	          this.increaseScore(10);
 
 	          if (flea.health === 0) {
-	            arrayOfFleas.splice(fleaIndex,1);
+	            arrayOfFleas.splice(fleaIndex, 1);
 	            this.increaseScore(190);
 
 	          }
@@ -796,42 +795,41 @@
 	    });
 	  }
 
-
-	  wormCollide(centipedeSegments,arrayOfMushrooms,gameLevel) {
+	  wormCollide(centipedeSegments, arrayOfMushrooms, gameLevel) {
 	    this.arrayOfBullets.forEach((bullet, bulletIndex) => {
-	      centipedeSegments.forEach((worm,wormIndex) => {
-	        worm.forEach((centipede,centipedeIndex) => {
-	          if (bullet.x <= (centipede.x + 26) && bullet.x >= centipede.x - 2 && bullet.y <  (centipede.y + 30) && bullet.y > centipede.y){
+	      centipedeSegments.forEach((worm, wormIndex) => {
+	        worm.forEach((centipede, centipedeIndex) => {
+	          if (bullet.x <= (centipede.x + 26) && bullet.x >= centipede.x - 2 && bullet.y < (centipede.y + 30) && bullet.y > centipede.y) {
 	            var currentWorm = centipedeSegments[wormIndex][centipedeIndex];
 	            if (currentWorm !== undefined) {
-	              arrayOfMushrooms.push(new Mushrooms(currentWorm.x - currentWorm.x % 24,currentWorm.y - currentWorm.y % 24,gameLevel));
+	              arrayOfMushrooms.push(new Mushrooms(currentWorm.x - currentWorm.x % 24, currentWorm.y - currentWorm.y % 24, gameLevel));
 	            }
-	            centipedeSegments.push(worm.slice(0,centipedeIndex));
-	            centipedeSegments.push(worm.slice(centipedeIndex+1,centipede.length));
-	            centipedeSegments.splice(wormIndex,1);
-	            this.arrayOfBullets.splice(bulletIndex,1);
-							
+	            centipedeSegments.push(worm.slice(0, centipedeIndex));
+	            centipedeSegments.push(worm.slice(centipedeIndex + 1, centipede.length));
+	            centipedeSegments.splice(wormIndex, 1);
+	            this.arrayOfBullets.splice(bulletIndex, 1);
+
 	            this.increaseScore(10);
 	          }
-	        });	
+	        });
 	      });
 	    });
 	  }
 
 	  spiderCollide(spiderArray, game) {
-	    this.arrayOfBullets.forEach((bullet,bulletIndex) => {
-	      if (bullet.x <= (spiderArray[0].x + 45) && bullet.x >= spiderArray[0].x && bullet.y < (spiderArray[0].y + 30) && bullet.y > spiderArray[0].y){
-	        this.arrayOfBullets.splice(bulletIndex,1);
-	        game.spiderScore = new Fivehundred(spiderArray[0].x,spiderArray[0].y,game.level);
+	    this.arrayOfBullets.forEach((bullet, bulletIndex) => {
+	      if (bullet.x <= (spiderArray[0].x + 45) && bullet.x >= spiderArray[0].x && bullet.y < (spiderArray[0].y + 30) && bullet.y > spiderArray[0].y) {
+	        this.arrayOfBullets.splice(bulletIndex, 1);
+	        game.spiderScore = new Fivehundred(spiderArray[0].x, spiderArray[0].y, game.level);
 
 	        spiderArray[0].x = -500;
 	        spiderArray[0].y = -500;
 	        spiderArray[0].dX = 0;
 	        spiderArray[0].dY = 0;
-	        
-	        setTimeout(function() {
+
+	        setTimeout(function () {
 	          game.spiderScore = null;
-	        },1000);
+	        }, 1000);
 
 	        spiderArray = [];
 
@@ -849,7 +847,8 @@
 
 	  fire() {
 	    if (this.arrayOfBullets.length === 0) {
-	      this.arrayOfBullets.push(new Bullet(this.player.x+12, this.player.y+8, this.level));
+	      this.arrayOfBullets.push(new Bullet(this.player.x + 12, this.player.y + 8, this.level));
+	      this.sound.play('fire1');
 	    }
 	  }
 
@@ -1016,6 +1015,44 @@
 
 /***/ }),
 /* 10 */
+/***/ (function(module, exports) {
+
+	class Sound {
+	  
+	    constructor () {
+	    
+	        this.sounds = {};
+	        this.sounds['newBeat'] = new Audio('assets/sounds/newBeat.wav');
+	        this.sounds['fire1'] = new Audio('assets/sounds/fire1.wav');
+	  
+	    }
+
+	    play(sound) {
+
+	        this.sounds[sound].loop = false;
+	        this.sounds[sound].play();
+
+	    }
+
+	   loop(sound) {
+
+	        this.sounds[sound].loop = true;
+	        this.sounds[sound].play();
+
+	    }
+	    pause(sound) {
+
+	        this.sounds[sound].loop = false;
+	        this.sounds[sound].pause();
+
+	    }
+
+	}
+
+	module.exports = Sound;
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var Mushrooms = __webpack_require__(1);
@@ -1057,35 +1094,6 @@
 
 
 	module.exports = Flea;
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-	class Sound {
-	  
-	    constructor () {
-	    
-	        this.sounds = {};
-	        this.sounds['newBeat'] = new Audio('assets/sounds/newBeat.wav');
-	  
-	    }
-
-	    play(sound) {
-
-	        this.sounds[sound].loop = true;
-	        this.sounds[sound].play();
-
-	    }
-
-	    pause(sound) {
-
-	        this.sounds[sound].loop = false;
-	        this.sounds[sound].pause();
-
-	    }
-
-	}
 
 /***/ })
 /******/ ]);

@@ -3,28 +3,29 @@ var Bullet = require('./Bullet.js');
 var Mushrooms = require('./Mushrooms.js');
 var Spider = require('./Spider.js');
 var Fivehundred = require('./500.js');
-
+var Sound = require('./Sound.js');
 
 class Gun {
-  constructor (player) {
+  constructor(player) {
     this.player = player;
     this.arrayOfBullets = [];
     this.shooting = false;
     this.blockFrames = 0;
     this.level = 0;
     this.score = 0;
+    this.sound = new Sound();
   }
 
   move() {
-    this.arrayOfBullets.forEach ((bullet) => {
-      bullet.y -= 24  ;
+    this.arrayOfBullets.forEach((bullet) => {
+      bullet.y -= 24;
     });
   }
 
   draw(context) {
-    this.arrayOfBullets.forEach ((bullet,index) => {
+    this.arrayOfBullets.forEach((bullet, index) => {
       if (bullet.y < 0) {
-        this.arrayOfBullets.splice(index,1);
+        this.arrayOfBullets.splice(index, 1);
       }
       bullet.draw(context);
     });
@@ -32,13 +33,13 @@ class Gun {
 
   collide(arrayOfMushrooms) {
     this.arrayOfBullets.forEach((bullet, bulletIndex) => {
-      arrayOfMushrooms.forEach((mushroom,mushroomIndex) => {
-        if (bullet.x >= mushroom.x && bullet.x <= mushroom.x+24 && bullet.y >= mushroom.y && bullet.y <= mushroom.y+30) {
-          this.arrayOfBullets.splice(bulletIndex,1);
+      arrayOfMushrooms.forEach((mushroom, mushroomIndex) => {
+        if (bullet.x >= mushroom.x && bullet.x <= mushroom.x + 24 && bullet.y >= mushroom.y && bullet.y <= mushroom.y + 30) {
+          this.arrayOfBullets.splice(bulletIndex, 1);
           mushroom.health--;
           this.increaseScore(1);
           if (mushroom.health === 0) {
-            arrayOfMushrooms.splice(mushroomIndex,1);
+            arrayOfMushrooms.splice(mushroomIndex, 1);
             this.increaseScore(4);
           }
         }
@@ -49,13 +50,13 @@ class Gun {
   fleaCollide(arrayOfFleas) {
     this.arrayOfBullets.forEach((bullet, bulletIndex) => {
       arrayOfFleas.forEach((flea, fleaIndex) => {
-        if (bullet.x >= flea.x && bullet.x <= flea.x+27 && bullet.y >= flea.y & bullet.y <= flea.y+30) {
+        if (bullet.x >= flea.x && bullet.x <= flea.x + 27 && bullet.y >= flea.y & bullet.y <= flea.y + 30) {
           this.arrayOfBullets.splice(bulletIndex, 1);
           flea.health--;
           this.increaseScore(10);
 
           if (flea.health === 0) {
-            arrayOfFleas.splice(fleaIndex,1);
+            arrayOfFleas.splice(fleaIndex, 1);
             this.increaseScore(190);
 
           }
@@ -64,42 +65,41 @@ class Gun {
     });
   }
 
-
-  wormCollide(centipedeSegments,arrayOfMushrooms,gameLevel) {
+  wormCollide(centipedeSegments, arrayOfMushrooms, gameLevel) {
     this.arrayOfBullets.forEach((bullet, bulletIndex) => {
-      centipedeSegments.forEach((worm,wormIndex) => {
-        worm.forEach((centipede,centipedeIndex) => {
-          if (bullet.x <= (centipede.x + 26) && bullet.x >= centipede.x - 2 && bullet.y <  (centipede.y + 30) && bullet.y > centipede.y){
+      centipedeSegments.forEach((worm, wormIndex) => {
+        worm.forEach((centipede, centipedeIndex) => {
+          if (bullet.x <= (centipede.x + 26) && bullet.x >= centipede.x - 2 && bullet.y < (centipede.y + 30) && bullet.y > centipede.y) {
             var currentWorm = centipedeSegments[wormIndex][centipedeIndex];
             if (currentWorm !== undefined) {
-              arrayOfMushrooms.push(new Mushrooms(currentWorm.x - currentWorm.x % 24,currentWorm.y - currentWorm.y % 24,gameLevel));
+              arrayOfMushrooms.push(new Mushrooms(currentWorm.x - currentWorm.x % 24, currentWorm.y - currentWorm.y % 24, gameLevel));
             }
-            centipedeSegments.push(worm.slice(0,centipedeIndex));
-            centipedeSegments.push(worm.slice(centipedeIndex+1,centipede.length));
-            centipedeSegments.splice(wormIndex,1);
-            this.arrayOfBullets.splice(bulletIndex,1);
-						
+            centipedeSegments.push(worm.slice(0, centipedeIndex));
+            centipedeSegments.push(worm.slice(centipedeIndex + 1, centipede.length));
+            centipedeSegments.splice(wormIndex, 1);
+            this.arrayOfBullets.splice(bulletIndex, 1);
+
             this.increaseScore(10);
           }
-        });	
+        });
       });
     });
   }
 
   spiderCollide(spiderArray, game) {
-    this.arrayOfBullets.forEach((bullet,bulletIndex) => {
-      if (bullet.x <= (spiderArray[0].x + 45) && bullet.x >= spiderArray[0].x && bullet.y < (spiderArray[0].y + 30) && bullet.y > spiderArray[0].y){
-        this.arrayOfBullets.splice(bulletIndex,1);
-        game.spiderScore = new Fivehundred(spiderArray[0].x,spiderArray[0].y,game.level);
+    this.arrayOfBullets.forEach((bullet, bulletIndex) => {
+      if (bullet.x <= (spiderArray[0].x + 45) && bullet.x >= spiderArray[0].x && bullet.y < (spiderArray[0].y + 30) && bullet.y > spiderArray[0].y) {
+        this.arrayOfBullets.splice(bulletIndex, 1);
+        game.spiderScore = new Fivehundred(spiderArray[0].x, spiderArray[0].y, game.level);
 
         spiderArray[0].x = -500;
         spiderArray[0].y = -500;
         spiderArray[0].dX = 0;
         spiderArray[0].dY = 0;
-        
-        setTimeout(function() {
+
+        setTimeout(function () {
           game.spiderScore = null;
-        },1000);
+        }, 1000);
 
         spiderArray = [];
 
@@ -117,7 +117,8 @@ class Gun {
 
   fire() {
     if (this.arrayOfBullets.length === 0) {
-      this.arrayOfBullets.push(new Bullet(this.player.x+12, this.player.y+8, this.level));
+      this.arrayOfBullets.push(new Bullet(this.player.x + 12, this.player.y + 8, this.level));
+      this.sound.play('fire1');
     }
   }
 
