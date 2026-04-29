@@ -1,12 +1,14 @@
 var Mushrooms = require('./Mushrooms.js');
 var CentipedeWhole = require('./Centipede-Whole.js');
 var Game = require('./Game.js');
+var Sound = require('./Sound.js');
 var canvas = document.getElementById('game'); //keep
 var context = canvas.getContext('2d'); //keep
 
 var game = new Game(context, canvas); //keep
+var sound =
 
-game.initializeGame();
+    game.initializeGame();
 
 game.gameLoop();
 
@@ -36,6 +38,7 @@ document.body.addEventListener('keyup', function (event) {
 document.body.addEventListener('keyup', startGame);
 
 function startGame(e) {
+
     if (e.keyCode === 80) {
 
         if (game.paused === false) {
@@ -98,3 +101,5 @@ if (game.centipede.segmentsArray.length === 0) {
     game.level++;
     game.difficultyLevel++;
 }
+
+

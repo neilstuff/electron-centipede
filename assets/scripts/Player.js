@@ -92,8 +92,6 @@ class Player {
     }
 
     stop(keyCode) {
-
-        this.sound.loop('newBeat');
         
         switch (keyCode) {
             case 37:

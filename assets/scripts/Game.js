@@ -69,15 +69,13 @@ class Game {
             document.querySelector('.next-level').classList.remove('menu-display');
             requestAnimationFrame(this.gameLoop.bind(this));
         } else if (this.paused === 'you-died') {
-            this.sound.pause('newBeat');
             document.querySelector('.you-died').classList.remove('menu-display');
             requestAnimationFrame(this.gameLoop.bind(this));
         } else if (this.paused === 'game-over') {
-            this.sound.pause('newBeat');
             document.querySelector('.game-over').classList.remove('menu-display');
             requestAnimationFrame(this.gameLoop.bind(this));
         } else {
-            this.sound.loop('newBeat');
+            this.sound.play('newBeat');
             this.pauseUp();
             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -109,12 +107,12 @@ class Game {
                 this.playerInitialize.spiderCollision(this.arrayOfSpiders, this);
                 this.playerInitialize.gun.spiderCollide(this.arrayOfSpiders, this);
                 this.frameCounter = 0;
-                this.sound.play('spider');
             } else {
                 this.sound.pause('spider');
             }
 
             if (this.arrayOfSpiders.length !== 0) {
+                this.sound.play('spider');
                 this.arrayOfSpiders[0].draw(this.context);
                 this.arrayOfSpiders[0].move(this.difficultyLevel);
                 this.arrayOfSpiders[0].pickUpShrooms(this.arrayOfMushrooms);
