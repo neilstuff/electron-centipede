@@ -1,30 +1,41 @@
 class Sound {
-  
-    constructor () {
-    
+
+    constructor() {
+
         this.sounds = {};
         this.sounds['newBeat'] = new Audio('assets/sounds/newBeat.wav');
         this.sounds['fire1'] = new Audio('assets/sounds/fire1.wav');
-  
+        this.sounds['spider'] = new Audio('assets/sounds/spider.wav');
+        this.playing = false;
+
     }
 
     play(sound) {
 
         this.sounds[sound].loop = false;
         this.sounds[sound].play();
+        this.playing = true;
 
     }
 
-   loop(sound) {
+    loop(sound) {
 
-        this.sounds[sound].loop = true;
-        this.sounds[sound].play();
+        if (!this.playing) {
+            this.sounds[sound].loop = true;
+            this.sounds[sound].play();
+            this.playing = true;
+        }
 
     }
+
     pause(sound) {
 
-        this.sounds[sound].loop = false;
-        this.sounds[sound].pause();
+        if (this.playing) {
+            this.sounds[sound].loop = false;
+            this.sounds[sound].pause();
+            this.sounds[sound].currentTime = 0;
+            this.playing = false;
+        }
 
     }
 
