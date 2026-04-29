@@ -6,6 +6,7 @@ class Sound {
         this.sounds['newBeat'] = new Audio('assets/sounds/newBeat.wav');
         this.sounds['fire1'] = new Audio('assets/sounds/fire1.wav');
         this.sounds['spider'] = new Audio('assets/sounds/spider.wav');
+        this.sounds['newBeat'] = new Audio('assets/sounds/newBeat.wav');
         this.playing = false;
 
     }

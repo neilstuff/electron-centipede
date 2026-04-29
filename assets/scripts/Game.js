@@ -69,13 +69,15 @@ class Game {
             document.querySelector('.next-level').classList.remove('menu-display');
             requestAnimationFrame(this.gameLoop.bind(this));
         } else if (this.paused === 'you-died') {
+            this.sound.pause('newBeat');
             document.querySelector('.you-died').classList.remove('menu-display');
             requestAnimationFrame(this.gameLoop.bind(this));
         } else if (this.paused === 'game-over') {
+            this.sound.pause('newBeat');
             document.querySelector('.game-over').classList.remove('menu-display');
             requestAnimationFrame(this.gameLoop.bind(this));
         } else {
-
+            this.sound.loop('newBeat');
             this.pauseUp();
             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
