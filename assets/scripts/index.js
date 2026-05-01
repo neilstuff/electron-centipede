@@ -6,10 +6,9 @@ var canvas = document.getElementById('game'); //keep
 var context = canvas.getContext('2d'); //keep
 
 var game = new Game(context, canvas); //keep
-var sound =
+var sound = new Sound(); //keep
 
-    game.initializeGame();
-
+game.initializeGame();
 game.gameLoop();
 
 document.body.addEventListener('keydown', function (event) {
@@ -44,6 +43,7 @@ function startGame(e) {
         if (game.paused === false) {
             game.paused = true;
         } else if (game.paused === true || game.paused === 'start') {
+            sound.play('1up');
             game.paused = false;
             game.playButtonAni();
         } else if (game.paused === 'next-level') {

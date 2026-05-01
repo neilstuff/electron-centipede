@@ -76,6 +76,7 @@ class Game {
             requestAnimationFrame(this.gameLoop.bind(this));
         } else {
             this.sound.play('newBeat');
+
             this.pauseUp();
             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -157,6 +158,8 @@ class Game {
             }
 
             if (this.difficultyLevel >= 0 && (Math.floor(Math.random() * Math.max((1600 - this.difficultyLevel * 200), 700))) === 0) {
+                console.log('Flea generated');
+                this.sound.play('flea');
                 this.arrayOfFleas.push(new Flea(this.level));
             }
 
@@ -165,7 +168,8 @@ class Game {
                 flea.update(this.arrayOfMushrooms, this.difficultyLevel);
                 if (flea.y > 720) {
                     this.arrayOfFleas.splice(fleaIndex, 1);
-                }
+                } 
+
             });
 
             this.frameCounter++;

@@ -146,11 +146,12 @@ class Player {
 
 
     reduceLife(pauseState) {
-
         this.lives -= 1;
+
         if (this.lives <= 0) {
             pauseState.paused = 'game-over';
         } else {
+            this.sound.play('death');
             pauseState.paused = 'you-died';
         }
 

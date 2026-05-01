@@ -17,16 +17,19 @@ class Flea {
 
     update(mushrooms, difficultyLevel) {
         var fleaMinSpeed = Math.min((3 + difficultyLevel * .2), 5);
+
         if (this.health === 1) {
             this.y += fleaMinSpeed * 2;
         } else {
             this.y += fleaMinSpeed;
         }
+        
         this.dropShrooms(mushrooms, difficultyLevel);
     }
 
     dropShrooms(mushroomArray, difficultyLevel) {
         var shroomDropper = (Math.floor(Math.random() * Math.max((30 - difficultyLevel * 2), 12)));
+
         if (shroomDropper === 1 && this.y < 672) {
             mushroomArray.push(new Mushrooms(this.x - this.x % 24, this.y - this.y % 24, this.level));
         }
