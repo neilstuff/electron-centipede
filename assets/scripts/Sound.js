@@ -10,6 +10,7 @@ class Sound {
         this.sounds['flea'] = new Audio('assets/sounds/flea.wav');
         this.sounds['death'] = new Audio('assets/sounds/death.wav');
         this.sounds['1up'] = new Audio('assets/sounds/1up.wav');
+        this.sounds['kill'] = new Audio('assets/sounds/kill.wav');
         this.playing = false;
 
     }

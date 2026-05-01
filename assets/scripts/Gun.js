@@ -53,6 +53,7 @@ class Gun {
                     this.arrayOfBullets.splice(bulletIndex, 1);
                     flea.health--;
                     this.increaseScore(10);
+                    this.sound.play('kill');
 
                     if (flea.health === 0) {
                         arrayOfFleas.splice(fleaIndex, 1);
@@ -79,6 +80,7 @@ class Gun {
                         this.arrayOfBullets.splice(bulletIndex, 1);
 
                         this.increaseScore(10);
+                        this.sound.play('kill');
                     }
                 });
             });
@@ -103,6 +105,7 @@ class Gun {
                 spiderArray = [];
 
                 this.increaseScore(500);
+                this.sound.play('kill');    
             }
         });
     }
